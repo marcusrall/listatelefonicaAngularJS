@@ -11,7 +11,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
       contatoAPI.getContatos().success(function(data){
           $scope.contatos = data;
       }).error(function (data, status){
-
+          $scope.error = "Não foi possivel carregar os dados!";
       });
     }
 
@@ -25,7 +25,6 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
 
     $scope.adicionarContato = function(contato){
 
-        contato.data = new Date();
 
         contatoAPI.saveContato(contato).success(function (data){
           console.log(data);

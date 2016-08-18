@@ -5,6 +5,8 @@
     <title>Lista Telefonica</title>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css" >
     <link rel="stylesheet" type="text/css" href="css/app.css" >
+    <link rel="stylesheet" type="text/css" href="css/ui.css" >
+
 
 
     <script src="lib/angular/angular.js" charset="utf-8"></script>
@@ -16,17 +18,69 @@
     <script src="js/services/contatoAPIServices.js" charset="utf-8"></script>
     <script src="js/services/operadorasAPIService.js" charset="utf-8"></script>
     <script src="js/value/configValue.js" charset="utf-8"></script>
-
-
-
-
+    <script src="js/directives/uiAlertDirective.js" charset="utf-8"></script>
+    <script src="js/directives/uiDateDirective.js" charset="utf-8"></script>
+    <script src="js/directives/uiAccordionDirective.js" charset="utf-8"></script>
 
 
   </head>
   <body ng-controller="listaTelefonicaCtrl">
       <div class="jumbotron ">
+
           <h3>{{app}}</h3>
-          <input class="form-control" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando"  />
+
+          <!-- Alert-->
+          <!--
+          <ui-alert title="Ops, Aconteceu um problema!" message="error">
+
+          </ui-alert>-->
+
+          <ui-accordions>
+            <ui-accordion title="Accordion 01">
+              Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta
+              dapibus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget
+              tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor
+              accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in
+              faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper
+              sit amet ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </ui-accordion>
+            </hr >
+            <ui-accordion title="Accordion 02">
+              Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta
+              dapibus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget
+              tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor
+              accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus
+              orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+              ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </ui-accordion>
+            <ui-accordion title="Accordion 03">
+              Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta
+              dapibus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget
+              tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor
+              accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus
+              orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+              ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </ui-accordion>
+            <ui-accordion title="Accordion 04">
+              Proin eget tortor risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+              Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Pellentesque in ipsum id orci porta
+              dapibus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Mauris blandit aliquet elit, eget
+              tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor
+              accumsan tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus
+              orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet
+              ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </ui-accordion>
+          </ui-accordions>
+          </hr >
+
+
+
+
+
+          <input class="form-control search" type="text" ng-model="criterioDeBusca" placeholder="O que você está buscando"  />
           <table class="table " ng-show="contatos.length">
             <tr>
               <th></th>
@@ -51,6 +105,8 @@
           <form name="contatoForm">
             <input class="form-control" type="text" ng-model="contato.name" name="nome" placeholder="Nome" ng-required="true" ng-minlength="10"/>
             <input class="form-control" type="text" ng-model="contato.telefone" name="telefone" placeholder="Telefone" ng-required="true" ng-pattern="/^\d{4,5}-\d{4}$/"/>
+            {{contato.data}}
+            <input class="form-control" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date />
             <select class="form-control" ng-model="contato.operadora_id" ng-options="operadora.name for operadora in operadoras | orderBy: 'nome' ">
                 <option value="">Selecione uma operadora</option>
             </select>
